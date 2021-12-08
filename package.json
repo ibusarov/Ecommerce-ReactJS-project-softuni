@@ -1,0 +1,31 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Ecommerce for online shopping",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server",
+    "server": "nodemon server/server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igotto/Ecommerce-ReactJS-project-softuni.git"
+  },
+  "author": "IB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igotto/Ecommerce-ReactJS-project-softuni/issues"
+  },
+  "homepage": "https://github.com/igotto/Ecommerce-ReactJS-project-softuni#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "nodemon": "^2.0.15"
+  }
+}

@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <>
+    <div style={{backgroundImage:"url(/images/ecommerce.png"}}>
       <Header />
       <main className="py-3">
         <Container>
@@ -18,7 +18,7 @@ function App() {
         </Container>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
