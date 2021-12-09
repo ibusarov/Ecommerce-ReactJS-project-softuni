@@ -1,8 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import products from "./data/products.js";
+import connectDB from "./config/db.js";
+import { notFound, errorHandler } from "./middleware/errorMiddlewear.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
@@ -10,14 +14,17 @@ app.get("/", (req, res) => {
   res.send("api is running....");
 });
 
-app.get("/api/products", (req, res) => {
-  res.json(products);
+app.use("/api/products", productRoutes);
+
+app.use((req, res, next) => {
+  const error = new Error(`Not Found - ${req.originalUrl}`);
+  res.status(404);
+  next(error);
 });
 
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+app.use(notFound);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(5000, console.log(`Server is runnimg on port ${PORT}`));
