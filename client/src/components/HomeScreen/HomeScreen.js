@@ -5,7 +5,7 @@ import Product from '../Products'
 import Loader from '../Loader'
 import Message from '../Message'
 import { listProducts } from '../../actions/productActions'
-import './HomeScreen.css'
+
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,9 @@ const HomeScreen = () => {
 
   return (
     <>
-      <h1>Latest Products</h1>
+      <h1 className='text-center bg-secondary cards__item__img'>
+        Latest Products
+      </h1>
       {loading ? (
         <Loader />
       ) : error ? (

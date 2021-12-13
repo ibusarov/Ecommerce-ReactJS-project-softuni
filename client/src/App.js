@@ -5,10 +5,12 @@ import ProductScreen from './components/ProductScreen'
 import CartScreen from './components/CartScreen'
 import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
+import Annoucement from './components/Announcement/Annoucement'
 
 function App() {
   return (
     <div style={{ backgroundImage: 'url(/images/ecommerce.png' }}>
+      <Annoucement />
       <Header />
       <main className='py-3'>
         <Container>

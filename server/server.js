@@ -1,30 +1,34 @@
-import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import { notFound, errorHandler } from "./middleware/errorMiddlewear.js";
-import productRoutes from "./routes/productRoutes.js";
+import express from 'express'
+import dotenv from 'dotenv'
+import connectDB from './config/db.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
-dotenv.config();
+dotenv.config()
 
-connectDB();
+connectDB()
 
-const app = express();
+const app = express()
 
-app.get("/", (req, res) => {
-  res.send("api is running....");
-});
+app.use(express.json())
 
-app.use("/api/products", productRoutes);
+app.get('/', (req, res) => {
+  res.send('api is running....')
+})
+
+app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use((req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  res.status(404);
-  next(error);
-});
+  const error = new Error(`Not Found - ${req.originalUrl}`)
+  res.status(404)
+  next(error)
+})
 
-app.use(notFound);
+app.use(notFound)
 
-app.use(errorHandler);
+app.use(errorHandler)
 
-const PORT = process.env.PORT || 5000;
-app.listen(5000, console.log(`Server is runnimg on port ${PORT}`));
+const PORT = process.env.PORT || 5000
+app.listen(5000, console.log(`Server is runnimg on port ${PORT}`))
