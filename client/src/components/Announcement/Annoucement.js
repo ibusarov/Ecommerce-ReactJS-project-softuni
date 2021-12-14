@@ -6,13 +6,13 @@ const Annoucement = () => {
     <Container
       fluid
       style={{
-        'background-color': 'rgb(92,230,92)',
+        'backgroundColor': 'rgb(92,230,92)',
         color: 'white',
-        'font-size': '20px',
+        'fontSize': '20px',
         height: '30px',
         display: 'flex',
-        'align-items': 'center',
-        'justify-content': 'center',
+        'alignItems': 'center',
+        'justifyContent': 'center',
       }}
       className='cards__item__img'
     >
