@@ -3,19 +3,12 @@ import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  Button,
-  Card,
-  ListGroupItem,
-} from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../Message'
 import { addToCart, removeFromCart } from '../../actions/cartActions'
+
 
 const CartScreen = () => {
   const { id } = useParams()
@@ -28,18 +21,28 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+
+
   useEffect(() => {
     if (id) {
       dispatch(addToCart(id, qty))
     }
   }, [dispatch, id, qty])
 
-  const removeFromCartHandler = (id) => {
+  const removeFromHandler = (id) => {
     dispatch(removeFromCart(id))
   }
 
-  const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
+  const checkOutHandler = () => {
+    if (!userInfo) {
+      navigate('/login')
+    } else {
+      navigate('/shipping')
+    }
+    //navigate('/login?redirect=shipping')
   }
 
   return (
@@ -48,12 +51,12 @@ const CartScreen = () => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your Cart is empty <Link to='/'>Go Back</Link>
+            Your cart is empty! <Link to='/'>Go Back</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
             {cartItems.map((item) => (
-              <ListGroupItem key={item.product}>
+              <ListGroup.Item key={item.product}>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -83,13 +86,13 @@ const CartScreen = () => {
                     <Button
                       type='button'
                       variant='light'
-                      onClick={() => removeFromCartHandler(item.product)}
+                      onClick={() => removeFromHandler(item.product)}
                     >
                       <i className='fas fa-trash'></i>
                     </Button>
                   </Col>
                 </Row>
-              </ListGroupItem>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         )}
@@ -97,26 +100,26 @@ const CartScreen = () => {
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
-            <ListGroupItem>
+            <ListGroup.Item>
               <h2>
-                Subtotal: {cartItems.reduce((acc, item) => acc + item.qty, 0)} <span></span>
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
-              BGN<span> </span>
+              BGN{' '}
               {cartItems
-                .reduce((acc, item) => acc + item.price * item.qty, 0)
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
-            </ListGroupItem>
-            <ListGroupItem>
+            </ListGroup.Item>
+            <ListGroup.Item>
               <Button
                 type='button'
                 className='btn-block'
                 disabled={cartItems.length === 0}
-                onClick={checkoutHandler}
+                onClick={checkOutHandler}
               >
-                PROCEED TO CHECKOUT
+                Proceed to checkout
               </Button>
-            </ListGroupItem>
+            </ListGroup.Item>
           </ListGroup>
         </Card>
       </Col>

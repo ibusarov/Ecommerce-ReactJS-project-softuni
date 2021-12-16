@@ -17,7 +17,7 @@ const Annoucement = () => {
       className='cards__item__img'
     >
       <Row>
-        <Col> Super Deal! Free Shipping on Orders over 50 BGN</Col>
+        <Col> Super Deal! Free Shipping on Orders over 100 BGN</Col>
       </Row>
     </Container>
   )

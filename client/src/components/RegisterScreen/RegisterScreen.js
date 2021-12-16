@@ -38,6 +38,7 @@ const RegisterScreen = () => {
       setMessage('Password does not match')
     } else {
       dispatch(register(name, email, password))
+      
     }
   }
 

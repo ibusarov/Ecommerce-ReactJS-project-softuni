@@ -9,6 +9,9 @@ import Annoucement from './components/Announcement'
 import LoginScreen from './components/LoginScreen'
 import RegisterScreen from './components/RegisterScreen'
 import Profile from './components/Profile'
+import Shipping from './components/Shipping'
+import Payment from './components/Payment'
+import PlaceOrder from './components/PlaceOrder'
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Container>
           <Routes>
             <Route path='/login' element={<LoginScreen />} />
+            <Route path='/shipping' element={<Shipping />} />
+            <Route path='/payment' element={<Payment />} />
+            <Route path='/placeorder' element={<PlaceOrder />} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/product/:id' element={<ProductScreen />} />
