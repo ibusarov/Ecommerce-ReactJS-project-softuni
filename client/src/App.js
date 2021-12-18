@@ -12,6 +12,7 @@ import Profile from './components/Profile'
 import Shipping from './components/Shipping'
 import Payment from './components/Payment'
 import PlaceOrder from './components/PlaceOrder'
+import OrderScreen from './components/OrderScreen'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/shipping' element={<Shipping />} />
             <Route path='/payment' element={<Payment />} />
             <Route path='/placeorder' element={<PlaceOrder />} />
+            <Route path='/order/:id' element={<OrderScreen />} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/product/:id' element={<ProductScreen />} />
